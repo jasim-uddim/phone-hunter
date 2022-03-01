@@ -5,7 +5,7 @@ const resultDiv = document.getElementById("result");
 const detailDiv = document.getElementById("search-result");
 const searchPhone = () => {
   phoneDetailsDiv.textContent = "";
-
+  resultDiv.textContent = "";
   const searchText = searchField.value;
   const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
   //   console.log(url);
@@ -21,15 +21,15 @@ const displayPhone = (phones) => {
   detailDiv.textContent = "";
   if (phones.length == 0) {
     const p = document.createElement("p");
-    p.innerText = "not fount result";
+    p.innerText = "not found result";
     noResultDiv.appendChild(p);
   } else {
     noResultDiv.textContent = "";
-    phones.forEach((phone) => {
+    phones.slice(0, 20).forEach((phone) => {
       const div = document.createElement("div");
       div.innerHTML = `
         <div class="col">
-              <div class="card">
+              <div class="card p-4">
                 <img src="${phone?.image}" class="card-img-top" alt="..." />
                 <div class="card-body">
                   <h5 class="card-title text-center">${phone?.brand}</h5>
@@ -38,15 +38,15 @@ const displayPhone = (phones) => {
                   </p>
                   <button type="button" class="btn btn-primary w-100" onclick="phoneDetails('${phone?.slug}')">Details</button>
                 </div>
-  
-              </div>
+                </div>
           </div>
         `;
-      const p = document.createElement("p");
-      p.innerText = `result:${phones.length}`;
-      resultDiv.appendChild(p);
+
       detailDiv.appendChild(div);
     });
+    const p = document.createElement("p");
+    p.innerText = `result:${phones.length}`;
+    resultDiv.appendChild(p);
   }
 };
 // single phone Details
