@@ -145,6 +145,14 @@ const displayPhoneDetails = (data) => {
     </div>
     <div class="row gx-0">
       <div class="col-4">
+      <div class="border bg-light px-2">sensors</div>
+      </div>
+      <div class="col-8">
+        <div class=" border bg-light px-2">${data?.mainFeatures?.sensors}</div>
+      </div>
+    </div>
+    <div class="row gx-0">
+      <div class="col-4">
       <div class="border bg-light px-2">storage</div>
       </div>
       <div class="col-8">
